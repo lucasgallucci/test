@@ -1,0 +1,110 @@
+<?php
+    $sub_menu = array(
+        array(
+            'titulo' => 'Ropa',
+            'url' => '/ropa.html
+        '),
+        array(
+            'titulo' =>'Electronica',
+            'url' => '/electronica.html'
+        ),
+        array(
+            'titulo' => 'Higiene',
+            'url' =>'/higiene.html'
+        ),
+        array(
+            'titulo' => 'Alimentos',
+            'url' => '/alimentos.html'
+        ),
+        array(
+            'titulo' => 'Otros',
+            'url' => '/otros.html'
+        )
+    );
+?>
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Lyracons Test</title>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class="contenedor">
+            <header>
+                <img src="https://via.placeholder.com/300x90.png/fff" alt="marca">
+            </header>
+
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" id="inicio">Inicio</a></li>
+                    <li>
+                        <div class="submenu">
+                            Productos
+                            <ul class="submenu-items">
+                                <?php foreach ($sub_menu as $menu) {?>
+                                <li><a href="<?php echo $menu['url']; ?>"><?php echo $menu['titulo'];?></a></li>
+                                <?php } ?>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#" id="nosotros">Nosotros</a></li>
+                    <li><a href="#" id="compras">Compras</a></li>
+                </ul>
+            </nav>
+            
+
+            <section class="main">
+
+                <aside>
+                    <div class="aside-content" id="aside-content"></div>
+                </aside>
+
+                <ul class="catalogo" id="catalogo">
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>  
+                </ul>
+
+            </section>
+        </div>
+
+
+        <script>
+            document.getElementById("compras").onmouseover = function() {
+                document.getElementById("aside-content").style.backgroundColor = "#8E60BE"
+            }
+            
+            document.getElementById("compras").onmouseout = function() {
+               document.getElementById("aside-content").style.backgroundColor = "#F13927"; 
+            }
+
+            document.getElementById("nosotros").onclick = function() {
+                var parrafo = document.createElement("p");
+                var contenido = document.createTextNode("Hola Mundo!");
+                parrafo.appendChild(contenido);
+                document.getElementById("aside-content").appendChild(parrafo);
+            };
+            
+            altura=document.getElementById("aside-content").clientHeight;
+
+            document.getElementById("inicio").onclick = function() {
+                var catalogo = document.getElementById("catalogo");
+                document.getElementById("aside-content").style.height=altura+"px";
+                
+                while (catalogo.firstChild) {
+                    catalogo.removeChild(catalogo.childNodes[0]);
+                }
+            };
+        </script>
+    </body>
+</html>

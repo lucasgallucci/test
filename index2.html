@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Lyracons Test</title>
+
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class="contenedor">
+            <header>
+                <img src="https://via.placeholder.com/300x90.png/fff" alt="marca">
+            </header>
+
+            <nav>
+                <ul class="menu">
+                    <li><a href="#" id="inicio">Inicio</a></li>
+                    <li>
+                        <div class="submenu">
+                            Productos
+                            <ul class="submenu-items" id="productos">
+                               
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#" id="nosotros">Nosotros</a></li>
+                    <li><a href="#" id="compras">Compras</a></li>
+                </ul>
+            </nav>
+            
+
+            <section class="main">
+
+                <aside>
+                    <div class="aside-content" id="aside-content"></div>
+                </aside>
+
+                <ul class="catalogo" id="catalogo">
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>
+                    <li><article></article></li>  
+                </ul>
+
+            </section>
+        </div>
+
+
+        <script>
+            document.getElementById("compras").onmouseover = function() {
+                document.getElementById("aside-content").style.backgroundColor = "#8E60BE"
+            }
+            
+            document.getElementById("compras").onmouseout = function() {
+               document.getElementById("aside-content").style.backgroundColor = "#F13927"; 
+            }
+
+            document.getElementById("nosotros").onclick = function() {
+                var parrafo = document.createElement("p");
+                var contenido = document.createTextNode("Hola Mundo!");
+                parrafo.appendChild(contenido);
+                document.getElementById("aside-content").appendChild(parrafo);
+            };
+            
+            altura=document.getElementById("aside-content").clientHeight;
+
+            document.getElementById("inicio").onclick = function() {
+                var catalogo = document.getElementById("catalogo");
+                document.getElementById("aside-content").style.height=altura+"px";
+                
+                while (catalogo.firstChild) {
+                    catalogo.removeChild(catalogo.childNodes[0]);
+                }
+            };
+
+
+            var JSON = {
+                submenu: [
+                    {titulo: 'Ropa', url: '/ropa.html'},
+                    {titulo: 'Electronica', url: '/electronica.html'},
+                    {titulo: 'Higiene', url: '/higiene.html'},
+                    {titulo: 'Alimentos', url: '/alimentos.html'},
+                    {titulo: 'Otros', url: '/otros.html'}
+                ]
+            };
+
+
+            JSON.submenu.forEach(element => {
+                var elementoLista = document.createElement("li");
+                var link = document.createElement("a");
+                var texto = document.createTextNode(element.titulo);
+                
+                link.href=element.url
+                link.appendChild(texto)
+                elementoLista.appendChild(link)        
+        
+                document.getElementById("productos").appendChild(elementoLista)
+            });
+
+           
+        </script>
+    </body>
+</html>
